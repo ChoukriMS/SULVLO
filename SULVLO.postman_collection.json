@@ -1,0 +1,1201 @@
+{
+	"info": {
+		"_postman_id": "d38601b2-5b3d-48c6-a380-2c2d49ba59e2",
+		"name": "Velo-AL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13431841"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"postman.setEnvironmentVariable(\"activationToken\",postman.getResponseHeader(\"activationToken\") );"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzUxMiJ9.eyJuYW1lIjoidW9vIiwiZW1haWwiOiJoaGhAbWFpbC5jb20iLCJzdWIiOiIzNWM5Y2E5Zi1mMjNiLTQ1MGItYWIwNy1lYWQwMjY3ZGQ5ZmYiLCJqdGkiOiJkOGUyNGZhYy1jNWFmLTQ4YjktOTkyMS1hNzI0MzJjNmY0YTkiLCJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwODAvYXBpL3VzZXJzL2xvZ2luIiwiYXVkIjoiaHR0cDovL0dldFVzZXJCeUlELlRCRCIsImlhdCI6MTY2NjQwNTcwMSwiZXhwIjoxNjY2NDA5MzAxfQ.-ohJQU1nlT7MlH37AKABUbnvx6dZBkfYS2wbScU8Kmt6LtjI4DS6UnGb3czEQGdJGsPl7oqqStZaQRawronR3w",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"ZIZOU\",\r\n    \"email\": \"normalUser@mail.com\",\r\n    \"idul\": \"recho25\",\r\n    \"age\": 27,\r\n    \"password\": \"ethop\",\r\n    \"birthDate\": \"30/12/2011\",\r\n    \"gender\" : \"MALE\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						},
+						"description": "Registers a user"
+					},
+					"response": []
+				},
+				{
+					"name": "loginUser",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"normalUser@mail.com\",\r\n    \"password\": \"ethop\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						},
+						"description": "Logins a normal user"
+					},
+					"response": []
+				},
+				{
+					"name": "loginTechnicien",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"token\", jsonData.token);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "activation-token",
+								"value": "\"77&\"",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"technicien@nospam.today\",\r\n    \"password\": \"test123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						},
+						"description": "Logins a technician user"
+					},
+					"response": []
+				},
+				{
+					"name": "loginAdmin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"token\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"ROTHSCHILD@nospam.today\",\r\n    \"password\": \"test123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						},
+						"description": "Logins an administrator"
+					},
+					"response": []
+				},
+				{
+					"name": "protected",
+					"request": {
+						"auth": {
+							"type": "bearer"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/users/protected",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"protected"
+							]
+						},
+						"description": "Request testing role based permissions"
+					},
+					"response": []
+				},
+				{
+					"name": "activateAccount",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "activation-token",
+								"value": "{{activationToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"normalUser@mail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/activation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"activation"
+							]
+						},
+						"description": "Activates account of a normal user"
+					},
+					"response": []
+				},
+				{
+					"name": "uniqueCode",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/stations/unique-code",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"stations",
+								"unique-code"
+							]
+						},
+						"description": "Sends a unique code used to unlock a bike after user pays a chosen subscription"
+					},
+					"response": []
+				}
+			],
+			"description": "Authentication collection"
+		},
+		{
+			"name": "travels",
+			"item": [
+				{
+					"name": "getTravelsByMonth",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "month",
+								"value": "NOVEMBER",
+								"type": "text"
+							},
+							{
+								"key": "user_id",
+								"value": "1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/travel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"travel"
+							]
+						},
+						"description": "Filter travels by month"
+					},
+					"response": []
+				},
+				{
+					"name": "getTravelHistorySummary",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "userId",
+								"value": "1",
+								"type": "text"
+							},
+							{
+								"key": "Cook",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/travel/summary",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"travel",
+								"summary"
+							]
+						},
+						"description": "Gives a summary of all travels done by a user"
+					},
+					"response": []
+				},
+				{
+					"name": "getTravelById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/travel/e9ec4d33-ce75-43bf-979a-676913f5d262",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"travel",
+								"e9ec4d33-ce75-43bf-979a-676913f5d262"
+							]
+						},
+						"description": "Get a specific travel by it's id"
+					},
+					"response": []
+				}
+			],
+			"description": "Travels collection"
+		},
+		{
+			"name": "stations",
+			"item": [
+				{
+					"name": "bikes",
+					"item": [
+						{
+							"name": "unlockBike",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "user-code",
+										"value": "0501125095",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/stations/available/DES/bikes/6:unlock",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"stations",
+										"available",
+										"DES",
+										"bikes",
+										"6:unlock"
+									]
+								},
+								"description": "Unlocks a bike given a unique code"
+							},
+							"response": []
+						},
+						{
+							"name": "returnBike",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "unlock-station-code",
+										"value": "DES",
+										"type": "text"
+									},
+									{
+										"key": "unlock-bike-location",
+										"value": "1",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/stations/available/DES/bikes/6:return",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"stations",
+										"available",
+										"DES",
+										"bikes",
+										"6:return"
+									]
+								},
+								"description": "Returns an unlocked bike to a station"
+							},
+							"response": []
+						},
+						{
+							"name": "getBikesAvailabilities",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/stations/available",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"stations",
+										"available"
+									]
+								},
+								"description": "Finds all current available and taken bikes"
+							},
+							"response": []
+						}
+					],
+					"description": "Bikes collection"
+				},
+				{
+					"name": "maintenance",
+					"item": [
+						{
+							"name": "startMaintenance",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "user-idul",
+										"value": "kedall",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/stations/under-maintenance/PEP:start-maintenance",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"stations",
+										"under-maintenance",
+										"PEP:start-maintenance"
+									]
+								},
+								"description": "Start a maintenance on a station"
+							},
+							"response": []
+						},
+						{
+							"name": "endMaintenance",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "user-idul",
+										"value": "kedall",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/stations/under-maintenance/PEP:end-maintenance",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"stations",
+										"under-maintenance",
+										"PEP:end-maintenance"
+									]
+								},
+								"description": "End the maintenance on a station"
+							},
+							"response": []
+						},
+						{
+							"name": "requestMaintenance",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"stationCode\": \"VAN\",\r\n    \"email\": \"technicien@nospam.today\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/users/request-maintenance",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"users",
+										"request-maintenance"
+									]
+								},
+								"description": "Request a maintenance on a station"
+							},
+							"response": []
+						}
+					],
+					"description": "Maintenance collection"
+				},
+				{
+					"name": "getAvailableStations",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/stations/available",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"stations",
+								"available"
+							]
+						},
+						"description": "Finds all available stations"
+					},
+					"response": []
+				},
+				{
+					"name": "getMaintenanceStations",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "user-idul",
+								"value": "kedall",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/stations/under-maintenance",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"stations",
+								"under-maintenance"
+							]
+						},
+						"description": "Find all under maintenance stations"
+					},
+					"response": []
+				}
+			],
+			"description": "Stations collection"
+		},
+		{
+			"name": "trucks",
+			"item": [
+				{
+					"name": "unloadBikes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "user-idul",
+								"value": "SYGAU1",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"unloadBikeDataList\" : [\r\n        {\r\n            \"toStationCode\": \"PEP\",\r\n            \"bikesLocations\": [\"8\", \"22\"]\r\n        },\r\n        {\r\n            \"toStationCode\": \"PEP\",\r\n            \"bikesLocations\": [\"6\", \"21\"]\r\n        },\r\n        {\r\n            \"toStationCode\": \"PEP\",\r\n            \"bikesLocations\": [\"3\", \"23\"]\r\n        },\r\n        {\r\n            \"toStationCode\": \"PEP\",\r\n            \"bikesLocations\": [\"4\", \"24\"]\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/trucks/d08d9e41-8180-4ca8-8578-24344e1ced32:unload",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trucks",
+								"d08d9e41-8180-4ca8-8578-24344e1ced32:unload"
+							]
+						},
+						"description": "Unload bikes to a truck"
+					},
+					"response": []
+				},
+				{
+					"name": "loadBikes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "user-idul",
+								"value": "SYGAU1",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fromStationCode\": \"PEP\",\r\n    \"bikesLocations\": [\"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/trucks/d08d9e41-8180-4ca8-8578-24344e1ced32:load",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trucks",
+								"d08d9e41-8180-4ca8-8578-24344e1ced32:load"
+							]
+						},
+						"description": "Load bikes in a truck"
+					},
+					"response": []
+				},
+				{
+					"name": "getTrucks",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "user-idul",
+								"value": "SYGAU1",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/trucks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"trucks"
+							]
+						},
+						"description": "Find all available trucks"
+					},
+					"response": []
+				}
+			],
+			"description": "Trucks collection"
+		},
+		{
+			"name": "subscriptions",
+			"item": [
+				{
+					"name": "addSubscription",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"subscriptionType\": \"Premium\",\r\n  \"idul\": \"recho25\",\r\n  \"creditCardNumber\" : \"1234567891234567\", \r\n  \"expirationMonth\" : 12, \r\n  \"expirationYear\" : 2045, \r\n  \"ccv\" :123,\r\n  \"semester\" : \"H23\",\r\n  \"automaticPaymentAfterTravel\": true,\r\n  \"automaticPaymentEndMonth\": true,\r\n  \"payWithSchoolFees\": false\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/subscriptions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"subscriptions"
+							]
+						},
+						"description": "Add a subscription"
+					},
+					"response": []
+				},
+				{
+					"name": "add Student Subscription",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"subscriptionType\": \"Student\",\r\n  \"idul\": \"recho25\",\r\n  \"creditCardNumber\" : \"1234567891234567\", \r\n  \"expirationMonth\" : 12, \r\n  \"expirationYear\" : 2045, \r\n  \"ccv\" :123,\r\n  \"semester\" : \"H23\",\r\n  \"automaticPaymentAfterTravel\": true,\r\n  \"automaticPaymentEndMonth\": true,\r\n  \"payWithSchoolFees\": true\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/subscriptions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"subscriptions"
+							]
+						},
+						"description": "Add a subscription"
+					},
+					"response": []
+				},
+				{
+					"name": "getSubscriptions",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/subscriptions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"subscriptions"
+							]
+						},
+						"description": "Get all subscriptions"
+					},
+					"response": []
+				}
+			],
+			"description": "Subscription collection"
+		},
+		{
+			"name": "payment",
+			"item": [
+				{
+					"name": "Automatic payment end month",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"automaticPayment\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/payment/configure/end-month",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"payment",
+								"configure",
+								"end-month"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Automatic payment aftr travel",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"automaticPayment\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/payment/configure/after-travel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"payment",
+								"configure",
+								"after-travel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pay extra fees",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"automaticPayment\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/payment/pay-extra-fees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"payment",
+								"pay-extra-fees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pay debt",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"automaticPayment\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/payment/pay-debt",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"payment",
+								"pay-debt"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pay subscription",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"automaticPayment\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/payment/pay-subscription",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"payment",
+								"pay-subscription"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Get bikes stats",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/stats/stations-available-bikes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"stats",
+								"stations-available-bikes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
